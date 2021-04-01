@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Identicon from 'identicon.js';
 import Navbar from './Navbar';
