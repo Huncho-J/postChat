@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Web3 from 'web3';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Identicon from 'identicon.js';
+import Navbar from './Navbar';
+import Main from './Main';
 import PostChat from './contracts/PostChat.json';
 
 
@@ -35,38 +38,71 @@ async loadBlockChainData(){
     if(postchatData){
      const postChat = new web3.eth.Contract(PostChat.abi, postchatData.address)
       this.setState({postChat: postChat})
+
+      const postCount = await postChat.methods.Postcount().call()
+      this.setState({postCount: postCount})
+
+      //load posts
+      for(var i = 1; i <= postCount; i++){
+        const post = await postChat.methods.posts(i).call()
+        this.setState({
+          posts: [...this.state.posts, post]
+        })
+      }
+      this.setState({
+        posts: this.state.posts.sort((a,b) => b.tipAmount - a.tipAmount)
+      })
+    this.setState({loading: false})
   } else{
    window.alert('contract was not deployed to test network.')
-  }
+
 this.setState({loading:false})
 }
+}
 
+createPost(content){
+  this.setState({loading: true})
+  this.state.postChat.methods.createPost(content).send({from: this.state.account})
+  .once('receipt', (receipt) => {
+    this.setState({loading: false})
+  })
+}
+
+tipPost(id, tipAmount){
+  this.setState({loading: true})
+  this.state.postChat.methods.tipPost(id).send({from: this.state.account, value: tipAmount})
+  .once('receipt', (receipt) => {
+    this.setState({loading: false})
+  })
+
+}
 constructor(props) {
   super(props)
   this.state = {
-    account: '',
+    account:'',
+    postChat: null,
+    postCount:0,
+    posts:[],
     loading: true
   }
+  this.createPost=this.createPost.bind(this)
+  this.tipPost=this.tipPost.bind(this)
 }
 
   render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      <Navbar account={this.state.account} />
+      {this.state.loading
+        ? <div id="loader" className="text-center"><p>Loading...</p></div>
+        :<Main
+        posts={this.state.posts}
+        createPost={this.createPost}
+        tipPost={this.tipPost}
+        />
+      }
+
+  </div>
   );
  }
 }
