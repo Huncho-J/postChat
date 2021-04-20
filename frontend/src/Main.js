@@ -19,7 +19,7 @@ class Main extends Component{
               <img className="ml-2"
                 width='30'
                 height='30'
-                src={`data:image/pngbase64, ${new Identicon(post.author,30).toString()}`}
+                src={`data:image/png;base64, ${new Identicon(post.author,30).toString()}`}
               />
              <small className="text-muted">{post.author}</small>
             </div>

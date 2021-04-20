@@ -21,7 +21,7 @@ class Navbar extends Component{
            ? <img className="ml-2"
               width='30'
               height='30'
-              src={`data:image/pngbase64, ${new Identicon(this.props.account,30).toString()}`}
+              src={`data:image/png;base64, ${new Identicon(this.props.account,30).toString()}`}
             />
             :<span></span>
           }
