@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "http://huncho-j.github.io/PostChat",
+  "homepage": "http://huncho-j.github.io/postChat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
