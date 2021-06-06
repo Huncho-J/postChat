@@ -17,6 +17,8 @@
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^10.0.0",
-    "identicon": "^3.0.1"
+    "eth-cli": "^2.0.1",
+    "identicon": "^3.0.1",
+    "truffle-hdwallet-provider": "^1.0.17"
   }
 }
