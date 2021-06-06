@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/postChat/static/js/main.9724a382.chunk.js",
-    "main.js.map": "/postChat/static/js/main.9724a382.chunk.js.map",
+    "main.js": "/postChat/static/js/main.2b2e2795.chunk.js",
+    "main.js.map": "/postChat/static/js/main.2b2e2795.chunk.js.map",
     "runtime-main.js": "/postChat/static/js/runtime-main.c3a695a1.js",
     "runtime-main.js.map": "/postChat/static/js/runtime-main.c3a695a1.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/postChat/static/css/2.4c97ca4f.chunk.css",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.c3a695a1.js",
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.86d95905.chunk.js",
-    "static/js/main.9724a382.chunk.js"
+    "static/js/main.2b2e2795.chunk.js"
   ]
 }
